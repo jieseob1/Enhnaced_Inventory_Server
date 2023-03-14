@@ -1,0 +1,31 @@
+{
+  "name": "enhnaced_inventory_server",
+  "version": "1.0.0",
+  "description": "From Build up make more structured Server than before and For ERP System",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jieseob1/Enhnaced_Inventory_Server.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jieseob1/Enhnaced_Inventory_Server/issues"
+  },
+  "homepage": "https://github.com/jieseob1/Enhnaced_Inventory_Server#readme",
+  "dependencies": {
+    "aws-sdk": "^2.1334.0",
+    "elasticsearch": "^16.7.3",
+    "koa": "^2.14.1",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^12.0.0",
+    "pg": "^8.10.0",
+    "redis": "^4.6.5",
+    "serverless": "^3.28.1",
+    "typeorm": "^0.3.12"
+  }
+}
