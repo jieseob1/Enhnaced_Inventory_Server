@@ -22,7 +22,7 @@ router.get('/about/:name', (ctx, next) => {
 });
 
 router.get('/post', (ctx, next) => {
-  const { id } = ctx.request.query; // 주소 뒤에 ?id=10 이런식으로 작성된 쿼리는 ctx.request.query 에 파싱됩니다.
+  const { id } = ctx.request.query; // 주소 뒤에 ?id=10 이런식으로 작성된 쿼리는 ctx.request.query 에 파싱
   if(id) {
       ctx.body = '포스트 #' + id;
   } else {
