@@ -30,7 +30,7 @@ router.get('/post', (ctx, next) => {
   }
 });
 
-// app.use(router.routes());
+// app.use(router.routes()); // Use the routes defined using the router
 // app.use(router.allowedMethods());
 app.use(router.routes()).use(router.allowedMethods());
 
