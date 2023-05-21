@@ -5,11 +5,19 @@ From Build up make more structured Server than before and For ERP System
 ## As a Stack
 
 * serverless: Framework for building serverless applications.
+
 * TypeORM: Object-relational mapping library for TypeScript and JavaScript.
+
 * PostgreSQL: Open-source relational database management system. -> (also check about aws RDS)
+
 * Redis: In-memory data structure store used as a database, cache, and message broker.
+
 * Elasticsearch: Search and analytics engine for all types of data.
-* Koa: Lightweight web framework for Node.js.
+
+* Koa: Lightweight web framework for Node.js.(using Nodemon)
+
+
+
 AWS Services
 * Lambda: Compute service that lets you run code without provisioning or managing servers.
 * SES: Email service that lets you send and receive email using your own email addresses and domains.
