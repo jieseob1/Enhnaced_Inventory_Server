@@ -8,7 +8,5 @@ import {
   createConnection
 } from 'typeorm';
 import 'pg';
-
-export default class Database {
-  connectionManager: ConnectionManager;
-}
+import AppDataSource from './data-source';
+// to connect database part
