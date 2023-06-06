@@ -152,3 +152,14 @@ AWS Services
       | quantity       |
       | ...            |
       +----------------+
+## 1.Entities role
+- Organiztion:
+- Department:
+- Employee:
+- Customer:
+- Supplier:
+- Product:
+- Order:
+- OrderItem:
+- Warehouse:
+- Inventory:
