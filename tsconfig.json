@@ -2,9 +2,12 @@
     "compilerOptions": {
       "module": "commonjs",
       "target": "es2017",
+      "sourceMap": true, //--enable-source-maps
       "esModuleInterop": true,
+      "outDir": "./dist",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "lib": ["es2017", "es2018.asynciterable"]
+      "lib": ["es2017", "es2018.asynciterable"],
+      "skipLibCheck": true,  //Do temp for @types/lodash
     }
 }
