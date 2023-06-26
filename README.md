@@ -170,6 +170,5 @@ Q: Error response from daemon: Cannot locate specified Dockerfile: Dockerfile
 A: DockerFile => Dockerfile
 
 3. 도커 이미지 빌드하는 방법
-yarn tsc
 DOCKER_BUILDKIT=0 docker build -t enhanced-inventory-server .
 docker run -p 4000:4000 enhanced-inventory-server
