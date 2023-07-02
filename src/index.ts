@@ -20,12 +20,15 @@ const AppDataSource = new DataSource({
 })
 
 AppDataSource.initialize()
-    .then(() => {
-        console.log("Data Source has been initialized!")
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization", err)
-    })
+  .then(() => {
+    const port = process.env.APPLICATION_PORT;
+    app.listen(port, () => {
+      console.log(`Server is running on port ${port}`);
+    });
+  })
+  .catch((error) => {
+    console.log('Data Source initialization error:', error);
+  });
 
 
 app.use(ctx => {
@@ -36,7 +39,3 @@ app.use(ctx => {
 // app.use(router.routes()); // Use the routes defined using the router
 // app.use(router.allowedMethods());
 app.use(router.routes()).use(router.allowedMethods());
-
-app.listen(4000, () => {
-  console.log("listen this");
-})

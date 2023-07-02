@@ -169,6 +169,16 @@ ex: DOCKER_BUILDKIT=0 docker build  -t enhanced-inventory-server .
 Q: Error response from daemon: Cannot locate specified Dockerfile: Dockerfile
 A: DockerFile => Dockerfile
 
-3. 도커 이미지 빌드하는 방법
+## 도커 네트워크 세팅
+docker network create my-network
+
+3-1. 도커 postgres 연결 방법(1.0V => 추후 변경 예정)
+- docker run --name postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_USER=parkjiseob -p 5432:5432 -d postgres
+
+- 이미 도커에 있는 경우 
+        docker run --name some-postgres -e POSTGRES_PASSWORD=mysecretpassword -e POSTGRES_USER=parkjiseob -p 5432:5432 --network my-network -d postgres
+
+3-2. 도커 이미지 빌드하는 방법
+yarn tsc
 DOCKER_BUILDKIT=0 docker build -t enhanced-inventory-server .
-docker run -p 4000:4000 enhanced-inventory-server
+docker run -p 4000:4000 --network my-network enhanced-inventory-server
