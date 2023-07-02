@@ -20,8 +20,9 @@
   },
   "homepage": "https://github.com/jieseob1/Enhnaced_Inventory_Server#readme",
   "dependencies": {
-    "@types/node": "^20.2.3",
+    "@types/node": "^20.3.3",
     "aws-sdk": "^2.1334.0",
+    "dotenv": "^16.3.1",
     "elasticsearch": "^16.7.3",
     "koa": "^2.14.1",
     "koa-bodyparser": "^4.3.0",

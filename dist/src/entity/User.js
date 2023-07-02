@@ -9,27 +9,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Organization = void 0;
+exports.User = void 0;
 const typeorm_1 = require("typeorm");
-let Organization = exports.Organization = class Organization {
+// initialization
+let User = exports.User = class User {
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
-    __metadata("design:type", String)
-], Organization.prototype, "id", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Organization.prototype, "name", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Organization.prototype, "address", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)("uuid") //universally unique id
+    ,
     __metadata("design:type", Number)
-], Organization.prototype, "phoneNumber", void 0);
-exports.Organization = Organization = __decorate([
-    (0, typeorm_1.Entity)()
-], Organization);
-//# sourceMappingURL=Organization.js.map
+], User.prototype, "id", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text') // column types => database type specific
+    ,
+    __metadata("design:type", String)
+], User.prototype, "firstName", void 0);
+__decorate([
+    (0, typeorm_1.Column)('text'),
+    __metadata("design:type", String)
+], User.prototype, "lastName", void 0);
+__decorate([
+    (0, typeorm_1.Column)("text"),
+    __metadata("design:type", String)
+], User.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)("timestamptz"),
+    __metadata("design:type", Date
+    // @ManyToOne(() => Department, department => department.users)
+    // department: Department;
+    )
+], User.prototype, "createdAt", void 0);
+exports.User = User = __decorate([
+    (0, typeorm_1.Entity)() // table name
+], User);
+//# sourceMappingURL=User.js.map

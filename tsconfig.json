@@ -1,7 +1,7 @@
 {
     "compilerOptions": {
       "module": "commonjs",
-      "target": "es2017",
+      "target": "ES2017",
       "sourceMap": true, //--enable-source-maps
       "esModuleInterop": true,
       "outDir": "./dist",

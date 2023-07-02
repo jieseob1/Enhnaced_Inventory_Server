@@ -9,7 +9,6 @@ COPY package.json yarn.lock ./
 
 # 프로젝트 의존성 설치
 RUN yarn install
-RUN yarn tsc
 # TypeScript를 글로벌로 설치
 
 RUN yarn global add typescript ts-node
