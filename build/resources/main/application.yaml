@@ -1,0 +1,27 @@
+debug: false
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/erp_server
+    username: victor
+    password: 1q2w3e4r
+  jpa:
+    defer-datasource-initialization: true # test용 db 만들수 있게 하기 resources 부분 data.sql
+    hibernate.ddl-auto: create # 엔티티 보고 자동으로 테이블 데이터 유추, 자동으로 ddl 문을 만든다. => create 문을 자동으로 마듬
+    show-sql: true # sql문장 쿼리 보여줄까
+    properties:
+      hibernate.format_sql: true
+      hibernate.default_batch_fetch_size: 100 # jpa 복잡한 쿼리 => 한번에 벌크로 select => n+1 쿼리 문제 => 100개 단위로 셀렉
+      h2.console.enabled: true # inMemoryDB로 사용할 예정
+      sql.init.mode: always # data.sql을 언제 작동시킬꺼냐
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+  sql.init.mode: always
+
+---
+
+spring:
+  config.activate.on-profile: test
+  datasource.url: jdbc:h2:mem:testdb
