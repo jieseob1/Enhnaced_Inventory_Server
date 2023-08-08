@@ -1,5 +1,8 @@
-debug: false
-
+logging:
+  level:
+    enhanced_inventory.enhanced_inventory.server: debug
+    org.springframework.web.servlet: debug #resp,req 부분만 debugging 하겠다.
+    org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
   datasource:
@@ -19,6 +22,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   sql.init.mode: always
+  sql:
+    init:
+      mode: never
 
 ---
 
