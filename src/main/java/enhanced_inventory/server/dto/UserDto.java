@@ -24,7 +24,7 @@ public record UserDto(
         return new UserDto(userId, userPassword, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
-    public static UserDto from(User entity) {
+    public static UserDto from(User entity) { //userDTO 정보 꺼내옴
         return new UserDto(
                 entity.getUserId(),
                 entity.getUserPassword(),
