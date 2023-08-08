@@ -1,18 +1,33 @@
 package enhanced_inventory.server.service;
 
 
+import enhanced_inventory.server.domain.User;
+import enhanced_inventory.server.dto.UserDto;
 import enhanced_inventory.server.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
+@Transactional
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
 
+    @Transactional(
+            readOnly = true
+    )
+    public Optional<UserDto> searchUserByUsername(String username) {
+        return this.userRepository.findById(username).map(UserDto::from); //이부분 잘 모르곘음
+    }
 
-    @Autowired
+    public UserDto saveUser(String username, String password, String email, String nickname, String memo) {
+        return UserDto.from((User) this.userRepository.save(User.of(username, password, email, nickname, memo, username))); // 객체 생성
+    }
+
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
-    }
+    } // 단일 생성자는 Autowired 사용 안해도 된다.
 }
