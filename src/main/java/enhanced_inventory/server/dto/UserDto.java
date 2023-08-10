@@ -8,20 +8,21 @@ public record UserDto(
         String userId,
         String userPassword,
         String email,
-        String nickname,
+        String role,
         String memo,
+        String companyId,
         LocalDateTime createdAt,
         String createdBy,
         LocalDateTime modifiedAt,
         String modifiedBy
 ) {
 
-    public static UserDto of(String userId, String userPassword, String email, String nickname, String memo) {
-        return new UserDto(userId, userPassword, email, nickname, memo, null, null, null, null);
+    public static UserDto of(String userId, String userPassword, String email, String role, String memo, String company) {
+        return new UserDto(userId, userPassword, email, role, memo,company, null, null, null, null);
     }
 
-    public static UserDto of(String userId, String userPassword, String email, String nickname, String memo, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
-        return new UserDto(userId, userPassword, email, nickname, memo, createdAt, createdBy, modifiedAt, modifiedBy);
+    public static UserDto of(String userId, String userPassword, String email, String role, String memo,String company, LocalDateTime createdAt, String createdBy, LocalDateTime modifiedAt, String modifiedBy) {
+        return new UserDto(userId, userPassword, email, role, memo,company, createdAt, createdBy, modifiedAt, modifiedBy);
     }
 
     public static UserDto from(User entity) { //userDTO 정보 꺼내옴
@@ -29,8 +30,9 @@ public record UserDto(
                 entity.getUserId(),
                 entity.getUserPassword(),
                 entity.getEmail(),
-                entity.getNickname(),
+                entity.getRole(),
                 entity.getMemo(),
+                entity.getCompanyId(),
                 entity.getCreatedAt(),
                 entity.getCreatedBy(),
                 entity.getModifiedAt(),
@@ -43,8 +45,9 @@ public record UserDto(
                 userId,
                 userPassword,
                 email,
-                nickname,
-                memo
+                role,
+                memo,
+                companyId
         );
     }
 

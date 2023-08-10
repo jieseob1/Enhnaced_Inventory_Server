@@ -29,7 +29,8 @@ public class User {
     @Setter @Column(nullable = false) private String userPassword;
 
     @Setter @Column(length = 100) private String email;
-    @Setter @Column(length = 100) private String nickname;
+    @Setter @Column(length = 100) private String role;
+    private String companyId; //이부분 연결
     @Setter private String memo;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -52,22 +53,23 @@ public class User {
 
     protected User() {}
 
-    private User(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
+    private User(String userId, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
         this.userId = userId;
         this.userPassword = userPassword;
         this.email = email;
-        this.nickname = nickname;
+        this.role = role;
         this.memo = memo;
+        this.companyId = companyId;
         this.createdBy = createdBy;
         this.modifiedBy = createdBy;
     }
 
-    public static User of(String userId, String userPassword, String email, String nickname, String memo) {
-        return User.of(userId, userPassword, email, nickname, memo, null);
+    public static User of(String userId, String userPassword, String email, String role, String memo,String companyId) {
+        return User.of(userId, userPassword, email, role, memo, companyId);
     }
 
-    public static User of(String userId, String userPassword, String email, String nickname, String memo, String createdBy) {
-        return new User(userId, userPassword, email, nickname, memo, createdBy);
+    public static User of(String userId, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
+        return new User(userId, userPassword, email, role, memo,companyId, createdBy);
     }
 
     @Override
