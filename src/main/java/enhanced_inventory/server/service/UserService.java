@@ -4,7 +4,9 @@ package enhanced_inventory.server.service;
 import enhanced_inventory.server.domain.User;
 import enhanced_inventory.server.dto.UserDto;
 import enhanced_inventory.server.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,13 +15,11 @@ import java.util.Optional;
 
 @Transactional
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    } // 단일 생성자는 Autowired 사용 안해도 된다.
     @Transactional(
             readOnly = true
     )
@@ -34,6 +34,11 @@ public class UserService {
 
     public List<User> getAllUsers() {
         return userRepository.findAll();
+    }
+
+    public void save(User user) {
+        user.setUserPassword(new BCryptPasswordEncoder().encode(user.getUserPassword()));
+        userRepository.save(user);
     }
 
 }

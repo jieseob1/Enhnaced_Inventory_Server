@@ -3,6 +3,7 @@ package enhanced_inventory.server.controller;
 import enhanced_inventory.server.domain.User;
 import enhanced_inventory.server.dto.UserDto;
 import enhanced_inventory.server.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,8 +12,9 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
+@RequiredArgsConstructor //final로 선언된 필드 생성자로 만들어준다.
 public class UserController {
-    private UserService userService;
+    private final UserService userService;
 
 
     @GetMapping
@@ -22,6 +24,12 @@ public class UserController {
                 .map(UserDto::from)
                 .collect(Collectors.toList());
         return ResponseEntity.ok(userDtos);
+    }
+
+    @PostMapping("/register")
+    public String register(@RequestBody User user) {
+        userService.save(user);
+        return "Registration Success";
     }
 //    @PostMapping
 //    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
