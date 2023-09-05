@@ -1,9 +1,7 @@
 package enhanced_inventory.server.domain;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -21,16 +19,26 @@ import java.util.Objects;
         @Index(columnList = "createdBy")
 })
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class User {
     @Id
     @Column(length = 50)
-    private String userId;
+    private String id;
 
     @Setter @Column(nullable = false) private String userPassword;
 
     @Setter @Column(length = 100) private String email;
     @Setter @Column(length = 100) private String role;
-    private String companyId; //이부분 연결
+    //companyId, @ManytoOne이 붙은 Company company 필드 둘다 companyId컬럼에 매핑
+    //@Column(insertable= false, updatable=false) 어노테이션 사용, 하나의 필드만 실제로 DB에 쓰게 만들자
+    @Column(name="companyId", insertable = false, updatable = false)
+    private String companyId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "companyId")
+    private Company company;
+
     @Setter private String memo;
 
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -51,10 +59,8 @@ public class User {
     protected String modifiedBy; // 수정자
 
 
-    protected User() {}
-
-    private User(String userId, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
-        this.userId = userId;
+    private User(String id, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
+        this.id = id;
         this.userPassword = userPassword;
         this.email = email;
         this.role = role;
@@ -64,24 +70,24 @@ public class User {
         this.modifiedBy = createdBy;
     }
 
-    public static User of(String userId, String userPassword, String email, String role, String memo,String companyId) {
-        return User.of(userId, userPassword, email, role, memo, companyId);
+    public static User of(String id, String userPassword, String email, String role, String memo,String companyId) {
+        return User.of(id, userPassword, email, role, memo, companyId);
     }
 
-    public static User of(String userId, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
-        return new User(userId, userPassword, email, role, memo,companyId, createdBy);
+    public static User of(String id, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
+        return new User(id, userPassword, email, role, memo,companyId, createdBy);
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof User that)) return false;
-        return this.getUserId() != null && this.getUserId().equals(that.getUserId());
+        return this.getId() != null && this.getId().equals(that.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(this.getUserId());
+        return Objects.hash(this.getId());
     }
 
 }

@@ -26,8 +26,9 @@ public record UserDto(
     }
 
     public static UserDto from(User entity) { //userDTO 정보 꺼내옴
+        //entity로 user에 관련된 정보들 가지고 오고 객체 생ㅇ성
         return new UserDto(
-                entity.getUserId(),
+                entity.getId(),
                 entity.getUserPassword(),
                 entity.getEmail(),
                 entity.getRole(),
