@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 @ToString
 @Entity
 public class Inventory {
+//    창고
     @Id
     private String id;
 

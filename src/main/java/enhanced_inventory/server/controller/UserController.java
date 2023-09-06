@@ -10,34 +10,30 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 public class UserController {
     private UserService userService;
 
 
-    @GetMapping
-    public ResponseEntity<List<UserDto>> getAllUsers() {
+    @GetMapping("/findAll")
+    public List<User> getAllUsers() {
         List<User> users = userService.getAllUsers(); // userService에서 모든 유저 정보들 가지고 온다.
-        List<UserDto> userDtos = users.stream()
-                .map(UserDto::from)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok(userDtos);
+        return users;
     }
-//    @PostMapping
-//    public ResponseEntity<UserDto> createUser(@RequestBody UserDto userDto) {
-//        User newUser = userService.saveUser(userDto.toEntity());
-//        return ResponseEntity.ok(UserDto.from(newUser));
-//    }
+    @PostMapping
+    public UserDto createUser(@RequestBody UserDto userDto) {
+        UserDto newUser = userService.saveUser(userDto);
+        return newUser;
+    }
 
-//    @PutMapping("/{userId}")
-//    public ResponseEntity<UserDto> updateUser(@PathVariable String userId, @RequestBody UserDto userDto) {
-//        User updatedUser = userService.updateUser(userId, userDto.toEntity());
-//        return ResponseEntity.ok(UserDto.from(updatedUser));
-//    }
+    @PutMapping("/{userid}")
+    public UserDto updateUser(@PathVariable String userId, @RequestBody UserDto userDto) {
+        UserDto updatedUser = userService.updateUser(userId,userDto);
+        return updatedUser;
+    }
 
-//    @DeleteMapping("/{userId}")
-//    public ResponseEntity<Void> deleteUser(@PathVariable String userId) {
-//        userService.deleteUser(userId);
-//        return ResponseEntity.noContent().build();
-//    }
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable String userId) {
+        userService.deleteUser(userId);
+    }
 }
