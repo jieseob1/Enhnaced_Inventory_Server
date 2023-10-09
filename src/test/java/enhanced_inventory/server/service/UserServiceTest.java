@@ -27,6 +27,20 @@ class UserServiceTest {
   }
 
   @Test
+  public void testCreateUser() {
+    User user = new User();
+    int userId = 1;
+
+    UserDto userDto = new UserDto(
+        "1", "password", "email", "role", "memo", "companyId",
+        null, null, null, null
+    );
+    when(userRepository.findById("1")).thenReturn(Optional.of(user));
+
+    UserDto result = userService.saveUser(user);
+    assertEquals("1", result.userId());
+  }
+  @Test
   public void testUpdateUser() {
     User user = new User();
     int userId = 1;

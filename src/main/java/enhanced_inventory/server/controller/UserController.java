@@ -3,15 +3,17 @@ package enhanced_inventory.server.controller;
 import enhanced_inventory.server.domain.User;
 import enhanced_inventory.server.dto.UserDto;
 import enhanced_inventory.server.service.UserService;
-import org.springframework.http.ResponseEntity;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
-
+@Slf4j
 @RestController
 @RequestMapping("/user")
 public class UserController {
+
+    @Autowired
     private UserService userService;
 
 
@@ -20,9 +22,19 @@ public class UserController {
         List<User> users = userService.getAllUsers(); // userService에서 모든 유저 정보들 가지고 온다.
         return users;
     }
-    @PostMapping
-    public UserDto createUser(@RequestBody UserDto userDto) {
-        UserDto newUser = userService.saveUser(userDto);
+    @PostMapping("/signup")
+    public UserDto createUser(@RequestBody User user) {
+        //fix later
+        log.info("createUser requestBody = {}", user);
+        UserDto newUser = userService.saveUser(
+            user.getId(),
+            user.getUserPassword(),
+            user.getEmail(),
+            user.getRole(),
+            user.getMemo(),
+            user.getCompanyId()
+        );
+        log.info("createUser savedUser = {}", newUser);
         return newUser;
     }
 

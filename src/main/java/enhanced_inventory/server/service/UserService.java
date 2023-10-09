@@ -17,8 +17,8 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class UserService {
-
-    private final UserRepository userRepository; // DI
+    @Autowired
+    private final UserRepository userRepository;
 
 
     @Transactional
@@ -38,10 +38,15 @@ public class UserService {
     }
 
 
-    public UserDto saveUser(UserDto userDto) {
-        User user = userDto.toEntity();
-        return UserDto.from(this.userRepository.save(user));
-    }
+//    public String saveUser(UserDto userDto) {
+//        User user = userDto.toEntity();
+//        this.userRepository.save(user);
+//        return "ok";
+//    }
+public UserDto saveUser(String username, String password, String email, String role, String memo, String companyId) {
+    return UserDto.from((User)this.userRepository.save(User.of(username, password, email, role, memo, companyId)));
+}
+
 
     public void deleteUser(String userId) {
         userRepository.deleteById(userId);

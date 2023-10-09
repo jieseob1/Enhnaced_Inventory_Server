@@ -2,6 +2,7 @@ package enhanced_inventory.server.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -24,6 +25,8 @@ import java.util.Objects;
 public class User {
     @Id
     @Column(length = 50)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // 별도로 ID를 관리할 필요가 없어짐
     private String id;
 
     @Setter @Column(nullable = false) private String userPassword;
@@ -71,7 +74,7 @@ public class User {
     }
 
     public static User of(String id, String userPassword, String email, String role, String memo,String companyId) {
-        return User.of(id, userPassword, email, role, memo, companyId);
+        return User.of(id, userPassword, email, role, memo, companyId,id);
     }
 
     public static User of(String id, String userPassword, String email, String role, String memo,String companyId, String createdBy) {
