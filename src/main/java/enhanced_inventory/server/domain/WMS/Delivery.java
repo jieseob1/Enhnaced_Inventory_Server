@@ -1,6 +1,6 @@
 package enhanced_inventory.server.domain.WMS;
 
-public class Delivery {
+public class Delivery { // inventoryMovement와 뭐가 다른지
 //  DeliveryID: 배송의 고유 식별자
 //  WarehouseID: 출발 창고 ID
 //  Destination: 목적지

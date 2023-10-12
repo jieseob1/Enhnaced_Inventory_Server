@@ -1,5 +1,17 @@
 package enhanced_inventory.server.domain.WMS;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
+@Getter
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Warehouse {
 //  WarehouseID: 창고의 고유 식별자
 //  Location: 창고 위치
@@ -17,4 +29,13 @@ public class Warehouse {
 //  특수 구역
 //  QuarantineZone: 격리 구역 (예: 손상된 물품, 리콜된 물품)
 //  PickAndPackZone: 피킹 및 패킹 구역
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private String id;
+  private String location;
+  private String capacity;
+  private String temperatureZone; //실온,상온, 냉동 => 추후 enum
+  private String securityLevel;
+  private String operationHours;
+
 }

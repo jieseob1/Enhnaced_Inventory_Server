@@ -4,16 +4,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+@Getter
 @Entity
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
 //    ProductID: 상품의 고유 식별자
 //    ProductName: 상품 이름
 //    Category: 상품 카테고리
 //    Price: 상품 가격
-//    Manufacturer: 제조사
 //    StockQuantity: 재고 수량
 //    SKU: Stock Keeping Unit, 재고 유지 단위
 //    Barcode: 바코드 번호
@@ -33,15 +38,22 @@ public class Product {
 //  재고
 //  ReservedStock: 예약된 재고 (예: 온라인 주문)
 //  DamagedStock: 손상된 재고
+//    Manufacturer: 제조사
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
+  private String productImage;
   private String name;
   private String description;
-  private int status; // check
-  private String type;
-  private String Vendor;
-  private String productImage;
   private BigDecimal price;
+  private String status; // check
+  private String type;
+  private String SKU;
+  private int stockQuantity;
+  private String barcode;
+  private String weight;
+  private String color;
+  private String material;
+  private String Vendor;
   // image and plus
 }
