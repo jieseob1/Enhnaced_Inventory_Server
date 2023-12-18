@@ -1,5 +1,9 @@
 package enhanced_inventory.server.domain.WMS;
 
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 import java.time.LocalTime;
 
 public class Category {
@@ -10,9 +14,9 @@ public class Category {
 //  ParentCategoryId: 상위 카테고리의 ID (계층적인 카테고리 구조를 가질 경우)
 //  메타데이터
 //  CreatedAt: 카테고리가 생성된 날짜와 시간
-//  UpdatedAt: 카테고리 정보가 마지막으로 업데이트된 날짜와 시간
+//  modifiedAt: 카테고리 정보가 마지막으로 업데이트된 날짜와 시간
 //  CreatedBy: 카테고리를 생성한 사용자나 시스템
-//  UpdatedBy: 카테고리를 마지막으로 업데이트한 사용자나 시스템
+//  modifiedBy: 카테고리를 마지막으로 업데이트한 사용자나 시스템
 //  추가 정보
 //  IsActive: 카테고리가 현재 활성 상태인지 여부 (예: true/false)
 //  SortOrder: 카테고리의 정렬 순서 (UI 표시에 사용될 수 있음)
@@ -22,6 +26,8 @@ public class Category {
 //  연관 데이터
 //  ProductCount: 해당 카테고리에 속한 상품의 수 (Denormalized field로 유지될 수 있음)
 //  ChildCategories: 하위 카테고리 목록 (계층적 카테고리 구조를 사용할 경우)
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String id;
   private String name;
   private String description;
@@ -29,12 +35,13 @@ public class Category {
 
   //meta
   private LocalTime createdAt;
-  private LocalTime updatedAt;
+  private LocalTime modifiedAt;
 
   private String createdBy;
-  private String updatedBy;
+  private String modifiedBy;
   //Additional
   private boolean isActive;
+  private boolean visibility; //change enum later
 
 
 }

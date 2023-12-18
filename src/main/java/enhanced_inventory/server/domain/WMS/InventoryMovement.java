@@ -1,6 +1,9 @@
 package enhanced_inventory.server.domain.WMS;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +15,7 @@ import lombok.NoArgsConstructor;
 public class InventoryMovement {
   //입출고 => 좀 더 고민 필요 입출고 됐을 때 어떤 플로우로 갈지
 
-//  TransactionID: 거래의 고유 식별자
+  //  TransactionID: 거래의 고유 식별자
 //  ProductID: 관련 상품 ID
 //  WarehouseID: 관련 창고 ID => 위의 부분들은 모두 다 연결되는 부분
 //  Quantity: 입/출고 수량
@@ -28,6 +31,8 @@ public class InventoryMovement {
 //      PackingSlip: 포장 목록
 //      QualityCheckMethod: 품질 검사 방법
 //      RMA: Return Merchandise Authorization, 반품 승인 번호
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String id;
 
 }

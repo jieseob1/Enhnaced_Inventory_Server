@@ -1,5 +1,6 @@
 package enhanced_inventory.server.domain.WMS;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -7,15 +8,23 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 public class Product {
-//    ProductID: 상품의 고유 식별자
+  //    ProductID: 상품의 고유 식별자
 //    ProductName: 상품 이름
 //    Category: 상품 카테고리
 //    Price: 상품 가격
@@ -45,6 +54,7 @@ public class Product {
   private String productImage;
   private String name;
   private String description;
+
   private BigDecimal price;
   private String status; // check
   private String type;
@@ -55,5 +65,24 @@ public class Product {
   private String color;
   private String material;
   private String Vendor;
+
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  @CreatedDate
+  @Column(nullable = false, updatable = false)
+  protected LocalDateTime createdAt;
+
+  @CreatedBy
+  @Column(nullable = false, updatable = false, length = 100)
+  protected String createdBy;
+
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  @LastModifiedDate
+  @Column(nullable = false)
+  protected LocalDateTime modifiedAt; // 수정일시
+
+  @LastModifiedBy
+  @Column(nullable = false, length = 100)
+  protected String modifiedBy; // 수정자
+
   // image and plus
 }
