@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -20,15 +21,18 @@ public class ProductService {
     return productRepository.findAll();
   }
 
+  public Optional<Product> findProductById(Long id) {
+    return productRepository.findById(id);
+  }
   @Transactional
   public Product createProduct(Product product) {
     return productRepository.save(product);
   }
 
   @Transactional
-  public Product updateProduct(String id, Product newProductData) {
+  public Product updateProduct(Long id, Product newProductData) {
     //Todo. 해당 부분 가능한지 확인
-    return productRepository.findById(id)
+    return productRepository.findById(id) // nullable체크
         .map(product -> {
           product.setName(newProductData.getName());
           product.setDescription(newProductData.getDescription());
@@ -39,8 +43,13 @@ public class ProductService {
         .orElseThrow(() -> new RuntimeException("Product not found"));
   }
   @Transactional
-  public void deleteProduct(String id) {
+  public void deleteProduct(Long id) {
     productRepository.deleteById(id);
   }
+
+  public List<Product> getProductsByCategory(String categoryId) {
+    return productRepository.findByCategories_Id(categoryId);
+  }
+
 
 }

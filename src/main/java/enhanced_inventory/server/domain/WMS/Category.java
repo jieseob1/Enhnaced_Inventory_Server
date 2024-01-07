@@ -1,11 +1,13 @@
 package enhanced_inventory.server.domain.WMS;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 import java.time.LocalTime;
 
+@Entity
 public class Category {
 //  기본 정보
 //  CategoryId: 카테고리의 고유 식별자 (일반적으로 Primary Key)
@@ -32,8 +34,6 @@ public class Category {
   private String name;
   private String description;
   private String parentCategoryId;
-
-  //meta
   private LocalTime createdAt;
   private LocalTime modifiedAt;
 
@@ -42,6 +42,5 @@ public class Category {
   //Additional
   private boolean isActive;
   private boolean visibility; //change enum later
-
 
 }
