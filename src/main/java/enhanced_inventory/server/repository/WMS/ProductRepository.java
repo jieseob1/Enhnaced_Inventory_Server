@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 public interface ProductRepository extends JpaRepository<Product, Long> {
-  List<Product> findByCategories_Id(String categoryId);
+  List<Product> findByCategories_Id(String categoryId); // find면 optinal
 }

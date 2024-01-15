@@ -55,4 +55,8 @@ public class ProductController {
     return ResponseEntity.ok().build(); //build
   }
 
+  @GetMapping("/{categoryId}")
+  public List<Product> getProductsByCategory(@PathVariable String categoryId) {
+    return productService.getProductsByCategory(categoryId);
+  }
 }
