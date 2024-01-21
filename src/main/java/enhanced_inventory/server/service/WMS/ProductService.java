@@ -1,6 +1,6 @@
 package enhanced_inventory.server.service.WMS;
 
-import enhanced_inventory.server.domain.WMS.Product;
+import enhanced_inventory.server.entity.WMS.Product;
 import enhanced_inventory.server.repository.WMS.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

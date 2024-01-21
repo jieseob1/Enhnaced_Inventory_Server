@@ -1,4 +1,4 @@
-package enhanced_inventory.server.domain.WMS;
+package enhanced_inventory.server.entity.WMS;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

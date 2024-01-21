@@ -1,6 +1,6 @@
 package enhanced_inventory.server.controller;
 
-import enhanced_inventory.server.domain.User;
+import enhanced_inventory.server.entity.User;
 import enhanced_inventory.server.dto.UserDto;
 import enhanced_inventory.server.service.UserService;
 import lombok.extern.slf4j.Slf4j;

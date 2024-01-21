@@ -1,6 +1,6 @@
-package enhanced_inventory.server.domain;
+package enhanced_inventory.server.entity.WMS;
 
-import enhanced_inventory.server.domain.WMS.Product;
+import enhanced_inventory.server.entity.WMS.Product;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;

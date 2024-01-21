@@ -1,6 +1,6 @@
 package enhanced_inventory.server.service;
 
-import enhanced_inventory.server.domain.Organization;
+import enhanced_inventory.server.entity.Organization;
 import enhanced_inventory.server.repository.OrganizationRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;

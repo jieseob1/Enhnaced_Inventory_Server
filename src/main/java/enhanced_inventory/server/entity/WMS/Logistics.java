@@ -1,18 +1,20 @@
-package enhanced_inventory.server.domain;
+package enhanced_inventory.server.entity.WMS;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import lombok.ToString;
 
+@ToString
 @Entity
-public class Organization {
+public class Logistics {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String id;
 
-  private String name;
-  private String type;
+  private String shipmentStatus;
+  private String originCountryId;
+  private String destinationCountryId;
   private String companyId;
-  // 필요한 다른 필드들
 }

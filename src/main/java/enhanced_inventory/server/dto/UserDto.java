@@ -1,6 +1,6 @@
 package enhanced_inventory.server.dto;
  
-import enhanced_inventory.server.domain.User;
+import enhanced_inventory.server.entity.User;
 
 import java.time.LocalDateTime;
 

@@ -1,10 +1,17 @@
-package enhanced_inventory.server.domain.WMS;
+package enhanced_inventory.server.entity.WMS;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.data.annotation.CreatedBy;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedBy;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Entity
@@ -34,10 +41,20 @@ public class Category {
   private String name;
   private String description;
   private String parentCategoryId;
-  private LocalTime createdAt;
-  private LocalTime modifiedAt;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  @CreatedDate
+  @Column(nullable = false, updatable = false)
+  private LocalDateTime createdAt;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  @LastModifiedDate
+  @Column(nullable = false)
+  private LocalDateTime modifiedAt;
 
+  @CreatedBy
+  @Column(nullable = false, updatable = false, length = 100)
   private String createdBy;
+  @LastModifiedBy
+  @Column(nullable = false, length = 100)
   private String modifiedBy;
   //Additional
   private boolean isActive;

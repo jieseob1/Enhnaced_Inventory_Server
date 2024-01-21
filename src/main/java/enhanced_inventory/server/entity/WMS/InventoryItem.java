@@ -1,4 +1,4 @@
-package enhanced_inventory.server.domain.WMS;
+package enhanced_inventory.server.entity.WMS;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
 @Entity
 @Getter
@@ -29,6 +28,7 @@ public class InventoryItem {
   @JoinColumn(name = "product_id", referencedColumnName = "id")
   private Product product; //connect to Product
 
+  //warehouse도 연결해야 하나
   private int quantity;
 
   private String location;

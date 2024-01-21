@@ -1,10 +1,9 @@
 package enhanced_inventory.server.service;
 
-import enhanced_inventory.server.domain.Company;
+import enhanced_inventory.server.entity.Company;
 import enhanced_inventory.server.repository.CompanyRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
