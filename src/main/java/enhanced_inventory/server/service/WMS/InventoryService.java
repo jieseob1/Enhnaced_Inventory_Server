@@ -1,6 +1,6 @@
 package enhanced_inventory.server.service.WMS;
 
-import enhanced_inventory.server.entity.WMS.InventoryItem;
+import enhanced_inventory.server.domain.WMS.InventoryItem;
 import enhanced_inventory.server.repository.WMS.InventoryRepository;
 
 import java.util.List;

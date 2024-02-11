@@ -1,6 +1,6 @@
 package enhanced_inventory.server.controller;
 
-import enhanced_inventory.server.entity.Organization;
+import enhanced_inventory.server.domain.Organization;
 import enhanced_inventory.server.service.OrganizationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

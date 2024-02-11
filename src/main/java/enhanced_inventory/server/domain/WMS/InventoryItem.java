@@ -1,4 +1,4 @@
-package enhanced_inventory.server.entity.WMS;
+package enhanced_inventory.server.domain.WMS;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +19,9 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InventoryItem {
+
+//  정보: 재고 수량, 제품의 위치, 재고 상태(예: 사용 가능, 저재고, 품절), 입출고 기록 등을 포함합니다. 각 InventoryItem은 Product 엔티티를 참조하여 제품 정보와 연결됩니다.
+//사용 사례: 재고 관리, 재고 수준 모니터링, 재고 입출고 기록, 재고 위치 추적 등 웨어하우스 운영에 필요한 정보를 제공합니다.
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

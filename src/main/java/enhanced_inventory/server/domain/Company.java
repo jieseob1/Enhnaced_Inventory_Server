@@ -1,4 +1,4 @@
-package enhanced_inventory.server.entity;
+package enhanced_inventory.server.domain;
 
 import jakarta.persistence.*;
 import lombok.Getter;

@@ -1,6 +1,6 @@
 package enhanced_inventory.server.controller.WMS;
 
-import enhanced_inventory.server.entity.WMS.Product;
+import enhanced_inventory.server.domain.WMS.Product;
 import enhanced_inventory.server.service.WMS.ProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;

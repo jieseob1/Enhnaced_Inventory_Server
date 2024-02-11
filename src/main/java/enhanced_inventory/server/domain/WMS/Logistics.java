@@ -1,4 +1,4 @@
-package enhanced_inventory.server.entity;
+package enhanced_inventory.server.domain.WMS;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -6,14 +6,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.ToString;
 
-@ToString(callSuper = true)
+@ToString
 @Entity
-public class Country {
-
+public class Logistics {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String id;
 
-  private String name;
-  private String region;
+  private String shipmentStatus;
+  private String originCountryId;
+  private String destinationCountryId;
+  private String companyId;
 }

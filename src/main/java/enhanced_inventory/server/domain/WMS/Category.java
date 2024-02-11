@@ -1,4 +1,4 @@
-package enhanced_inventory.server.entity.WMS;
+package enhanced_inventory.server.domain.WMS;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,7 +12,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 @Entity
 public class Category {
