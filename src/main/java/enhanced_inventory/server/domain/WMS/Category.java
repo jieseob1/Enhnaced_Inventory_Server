@@ -1,10 +1,12 @@
 package enhanced_inventory.server.domain.WMS;
 
+import enhanced_inventory.server.domain.AuditingFields;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import org.springframework.data.annotation.CreatedBy;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
@@ -12,9 +14,10 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 @Entity
-public class Category {
+public class Category extends AuditingFields {
 //  기본 정보
 //  CategoryId: 카테고리의 고유 식별자 (일반적으로 Primary Key)
 //  CategoryName: 카테고리 이름
@@ -38,23 +41,11 @@ public class Category {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private String id;
   private String name;
+  @ManyToMany(mappedBy = "categories")
+  private Set<Product> products;
+//  다대다 관계의 소유측이 아닌 쪽에서 관계를 매핑하기 위해 사용
   private String description;
   private String parentCategoryId;
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  @CreatedDate
-  @Column(nullable = false, updatable = false)
-  private LocalDateTime createdAt;
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  @LastModifiedDate
-  @Column(nullable = false)
-  private LocalDateTime modifiedAt;
-
-  @CreatedBy
-  @Column(nullable = false, updatable = false, length = 100)
-  private String createdBy;
-  @LastModifiedBy
-  @Column(nullable = false, length = 100)
-  private String modifiedBy;
   //Additional
   private boolean isActive;
   private boolean visibility; //change enum later
