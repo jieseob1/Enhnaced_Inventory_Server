@@ -1,7 +1,7 @@
 logging:
   level:
     enhanced_inventory.enhanced_inventory.server: debug
-    org.springframework.web.servlet: debug #resp,req 부분만 debugging 하겠다.
+    org.springframework.web: debug #resp,req 부분만 debugging 하겠다. => web뒤에 servlet 붙여야함
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
 spring:
@@ -23,6 +23,11 @@ spring:
   sql:
     init:
       mode: never
+  web:
+    cors:
+      allow-origin: http://localhost:3001
+      allowed-methods: GET, POST, PUT, DELETE, OPTIONS
+      allow-credentials: true
 
 ---
 

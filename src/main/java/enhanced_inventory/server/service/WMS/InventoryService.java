@@ -25,7 +25,7 @@ public class InventoryService {
   }
 
   public Page<InventoryItem> findInventoryItems(String query, Pageable pageable) {
-    if (query == null || query.isEmpty()) {
+    if (query == null || query.isEmpty()) { // 쿼리 없으면 전체 보낸다.
       return inventoryRepository.findAll(pageable);
     } else {
       Specification<InventoryItem> spec = Specification.where(InventorySpecification.nameContains(query))
