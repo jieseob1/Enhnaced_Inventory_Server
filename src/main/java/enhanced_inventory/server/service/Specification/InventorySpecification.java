@@ -1,6 +1,5 @@
 package enhanced_inventory.server.service.Specification;
 
-import enhanced_inventory.server.domain.WMS.InventoryItem;
 import org.springframework.data.jpa.domain.Specification;
 
 public class InventorySpecification {
