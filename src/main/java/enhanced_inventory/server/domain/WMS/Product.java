@@ -72,9 +72,11 @@ public class Product {
   private String Vendor;
 
   @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(name="product_category",joinColumns = {
-      @JoinColumn(name="product_id", referencedColumnName = "id")}
-      ,inverseJoinColumns = {@JoinColumn(name="category_id",referencedColumnName = "id")})
+  @JoinTable(
+      name = "product_categories", // 조인 테이블 이름
+      joinColumns = @JoinColumn(name = "product_id"), // 현재 엔티티를 참조하는 FK
+      inverseJoinColumns = @JoinColumn(name = "category_id") // 반대 엔티티를 참조하는 FK
+  )
   private Set<Category> categories = new HashSet<Category>();
 
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)

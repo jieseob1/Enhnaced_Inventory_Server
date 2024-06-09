@@ -2,7 +2,6 @@ package enhanced_inventory.server.repository.WMS;
 
 import enhanced_inventory.server.domain.WMS.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
