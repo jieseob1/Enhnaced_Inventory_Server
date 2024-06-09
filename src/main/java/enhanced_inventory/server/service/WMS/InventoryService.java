@@ -45,7 +45,7 @@ public class InventoryService {
       //재고 고정
         Inventory inventory = inventoryRepository.findById(inventoryId)
                 .orElseThrow(() -> new ResourceNotFoundException("Inventory not found with id " + inventoryId));
-        inventory.set
+        inventory.setQuantity(newQuantity);
         inventory.setAvailableQuantity(newQuantity - inventory.getAllocatedQuantity());
         return inventoryRepository.save(inventory);
 
