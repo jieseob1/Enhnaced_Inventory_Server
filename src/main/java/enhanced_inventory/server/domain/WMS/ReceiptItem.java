@@ -22,9 +22,9 @@ public class ReceiptItem {
     @JoinColumn(name = "receiptid", nullable = false)
     private Receipt receipt;
 
-    @Setter
-    @JoinColumn(name = "itemid", nullable = false)
-    private Item item;
+//    @Setter
+//    @JoinColumn(name = "itemid", nullable = false)
+//    private Item item;
 
     @Setter
     private int quantity;

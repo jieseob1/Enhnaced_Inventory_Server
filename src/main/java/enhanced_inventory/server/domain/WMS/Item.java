@@ -15,38 +15,38 @@ import java.util.List;
 @Getter
 public class Item extends AuditingFields {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Setter
-    private String itemCode;
+  @Setter
+  private String itemCode;
 
-    @Setter
-    private String itemName;
+  @Setter
+  private String itemName;
 
-    @Setter
-    private String specification;
+  @Setter
+  private String specification;
 
-    @Setter
-    @Column(length = 50)
-    private String unit;
+  @Setter
+  @Column(length = 50)
+  private String unit;
 
-    @Setter
-    private String category;
+  @Setter
+  private String category;
 
-    @Setter
-    private String barcode;
+  @Setter
+  private String barcode;
 
-    @Setter
-    private  String image;
+  @Setter
+  private String image;
 
-    @Setter
-    private Long price;
+  @Setter
+  private Long price;
 
-    @Setter
-    private int stockAlertLevel;
+  @Setter
+  private int stockAlertLevel;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Inventory> inventories; //하나의 item, 여러 inventory 가질 수 있음
+//  @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+//  private List<Inventory> inventories; //하나의 item, 여러 inventory 가질 수 있음
 }

@@ -1,5 +1,6 @@
 package enhanced_inventory.server.domain.WMS;
 
+import enhanced_inventory.server.domain.AuditingFields;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -29,7 +30,7 @@ import java.util.Set;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-public class Product {
+public class Product extends AuditingFields {
   //    ProductID: 상품의 고유 식별자
 //    ProductName: 상품 이름
 //    Category: 상품 카테고리
@@ -79,23 +80,6 @@ public class Product {
   )
   private Set<Category> categories = new HashSet<Category>();
 
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  @CreatedDate
-  @Column(nullable = false, updatable = false)
-  protected LocalDateTime createdAt;
-
-  @CreatedBy
-  @Column(nullable = false, updatable = false, length = 100)
-  protected String createdBy;
-
-  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  @LastModifiedDate
-  @Column(nullable = false)
-  protected LocalDateTime modifiedAt; // 수정일시
-
-  @LastModifiedBy
-  @Column(nullable = false, length = 100)
-  protected String modifiedBy; // 수정자
 
   // image and plus
 }
