@@ -2,6 +2,7 @@ package enhanced_inventory.server.domain.WMS;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@Getter
 public class Supplier {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
