@@ -18,12 +18,15 @@ public class PurchaseOrderItem {
     private Long id;
 
     @Setter
+    @Column(nullable = false, length = 50)
     private String productCode;
 
     @Setter
+    @Column(nullable = false)
     private int quantity;
 
     @Setter
+    @Column(nullable = false)
     private BigDecimal unitPrice;
 
     @ManyToOne(fetch = FetchType.LAZY)
