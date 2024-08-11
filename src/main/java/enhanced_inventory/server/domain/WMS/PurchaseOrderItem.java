@@ -26,11 +26,11 @@ public class PurchaseOrderItem {
     @Setter
     private BigDecimal unitPrice;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "purchase_order_id")
     private PurchaseOrder purchaseOrder;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id")
     private Item item;
 }
