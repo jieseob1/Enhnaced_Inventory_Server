@@ -1,5 +1,6 @@
 package enhanced_inventory.server.domain.WMS;
 
+import enhanced_inventory.server.domain.enums.OrderStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -41,9 +42,9 @@ public class ShippingOrder {
   private LocalDateTime dueDate;
 
   @Setter
-  private int status;
+  private OrderStatus status;
 
-  @Column(length = 5000)
+  @Column(length = 1000)
   private String memo;
 
 }

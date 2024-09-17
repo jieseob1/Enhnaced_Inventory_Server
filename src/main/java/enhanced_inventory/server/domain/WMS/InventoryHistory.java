@@ -34,7 +34,7 @@ public class InventoryHistory extends AuditingFields {
   //modified로 알아볼 예정
 
   @Setter
-  @Column(length = 5000)
+  @Column(length = 1000)
   private String exchangeReason;
 
   @Setter

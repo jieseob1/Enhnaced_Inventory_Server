@@ -29,7 +29,7 @@ public class Return {
   private Shipment shipment;
 
   @Setter
-  @Column(length = 5000)
+  @Column(length = 1000)
   private String returnReason;
 
   @Setter
