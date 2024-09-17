@@ -2,51 +2,55 @@ package enhanced_inventory.server.domain.WMS;
 
 import enhanced_inventory.server.domain.AuditingFields;
 import jakarta.persistence.*;
+import java.math.BigDecimal;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-
-import java.util.List;
 
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Table(name = "item")
 public class Item extends AuditingFields {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+  @Column(name = "item_code", nullable = false, length = 255)
+  private String itemCode;
 
-    @Setter
-    private String itemCode;
+  @Column(name = "item_name", nullable = false, length = 255)
+  private String itemName;
 
-    @Setter
-    private String itemName;
+  @Column(length = 255)
+  private String specification;
 
-    @Setter
-    private String specification;
+  @Column(length = 50)
+  private String unit;
 
-    @Setter
-    @Column(length = 50)
-    private String unit;
+  @Column(length = 255)
+  private String category;
 
-    @Setter
-    private String category;
+  @Column(length = 255)
+  private String barcode;
 
-    @Setter
-    private String barcode;
+  @Column(length = 255)
+  private String image;
 
-    @Setter
-    private  String image;
+  @Column(precision = 10, scale = 2)
+  private BigDecimal price;
 
-    @Setter
-    private Long price;
+  @Column(name = "stock_alert_level")
+  private Integer stockAlertLevel;
 
-    @Setter
-    private int stockAlertLevel;
+  @OneToMany(mappedBy = "item")
+  private List<PurchaseOrderItem> purchaseOrderItems;
 
-    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Inventory> inventories; //하나의 item, 여러 inventory 가질 수 있음
+  @OneToMany(mappedBy = "item")
+  private List<ReceiptItem> receiptItems;
+
+  @OneToMany(mappedBy = "item")
+  private List<Inventory> inventories;
 }

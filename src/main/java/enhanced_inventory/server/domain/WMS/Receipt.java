@@ -36,7 +36,7 @@ public class Receipt {
     private String status;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "companyId", nullable = false)
+    @JoinColumn(name = "expect_receipt_id", nullable = false)
     private ExpectedReceipt expectedReceipt; // 예상 입고와 연관된 식별자
 
     @OneToMany(mappedBy = "receipt", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

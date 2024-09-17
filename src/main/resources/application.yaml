@@ -4,6 +4,7 @@ logging:
     org.springframework.web.servlet: debug # 'servlet' 추가
     org.hibernate.type.descriptor.sql.BasicBinder: trace
 
+
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -12,16 +13,18 @@ spring:
     password: 1q2w3e4r
     defer-datasource-initialization: true # 데이터베이스 초기화 지연
   jpa:
-    hibernate.ddl-auto: update # 엔티티에 따라 자동으로 DDL 생성
+    hibernate:
+      ddl-auto: update # 엔티티에 따라 자동으로 DDL 생성
     show-sql: true # SQL 쿼리 출력
     properties:
+      dialect: org.hibernate.dialect.MySQL8Dialect
       hibernate.format_sql: true
       hibernate.default_batch_fetch_size: 100 # 배치 패치 크기 설정
     deferred-datasource-initialization: true # 데이터베이스 초기화 지연
-  h2.console.enabled: true # H2 콘솔 활성화
-  sql:
-    init:
-      mode: always # 항상 초기화
+#  h2.console.enabled: true # H2 콘솔 활성화
+#  sql:
+#    init:
+#      mode: always # 항상 초기화
   web:
     cors:
       allow-origin:

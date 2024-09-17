@@ -23,7 +23,8 @@ public class ReceiptItem {
     private Receipt receipt;
 
     @Setter
-    @JoinColumn(name = "itemid", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
     @Setter

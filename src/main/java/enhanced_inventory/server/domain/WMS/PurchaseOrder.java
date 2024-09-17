@@ -13,7 +13,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class PurchaseOrder {
-    //구매 오더 등록 관련
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,7 +29,6 @@ public class PurchaseOrder {
     // 이는 PurchaeorderItem 엔티티가 관계의 주인임을 의미합니다.
 
     @ManyToOne
-    @JoinColumn(name = "supplier_id")
-    private Supplier supplier;
-
+    @JoinColumn(name = "supplier_id") // fk로  사용되는 듯 //supplier가 purchaseOrder 참조
+    private Supplier supplier;// 자식 테이블이 부모 테이블 참조중
 }
