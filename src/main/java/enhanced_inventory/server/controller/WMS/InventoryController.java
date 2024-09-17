@@ -1,7 +1,6 @@
 package enhanced_inventory.server.controller.WMS;
 
 import enhanced_inventory.server.domain.WMS.Inventory;
-import enhanced_inventory.server.domain.WMS.Item;
 import enhanced_inventory.server.service.WMS.InventoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

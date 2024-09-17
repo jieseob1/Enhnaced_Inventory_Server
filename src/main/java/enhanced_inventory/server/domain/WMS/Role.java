@@ -31,7 +31,7 @@ public class Role extends AuditingFields {
     private String description;
 
     @ManyToMany(mappedBy = "roles") //앞어 정의해놓은 set인 rolese
-    private Set<User> users = new HashSet<>();
+    private Set<User> users = new HashSet<>(); //user는 role에 매핑된다.
 
 
 }

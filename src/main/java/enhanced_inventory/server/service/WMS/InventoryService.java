@@ -1,7 +1,6 @@
 package enhanced_inventory.server.service.WMS;
 
 import enhanced_inventory.server.domain.WMS.Inventory;
-import enhanced_inventory.server.domain.WMS.Item;
 import enhanced_inventory.server.repository.WMS.InventoryRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
@@ -36,9 +35,9 @@ public class InventoryService {
               .orElseThrow(() -> new ResourceNotFoundException("Inventory not found with id" + id));
   }
 
-    public List<Inventory> getInventoriesByItem(Item item) {
-        return inventoryRepository.findByItem(item); // 다대일 => 여러개의 item들로, 하나의 재고(?)
-    }
+//    public List<Inventory> getInventoriesByItem(Item item) {
+//        return inventoryRepository.findByItem(item); // 다대일 => 여러개의 item들로, 하나의 재고(?)
+//    }
 
     @Transactional
     public Inventory adjustInventory(Long inventoryId, int newQuantity) {

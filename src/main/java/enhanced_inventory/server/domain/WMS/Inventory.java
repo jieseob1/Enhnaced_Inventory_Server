@@ -2,6 +2,7 @@ package enhanced_inventory.server.domain.WMS;
 
 import enhanced_inventory.server.domain.AuditingFields;
 import jakarta.persistence.*;
+import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 public class Inventory extends AuditingFields {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -36,11 +38,13 @@ public class Inventory extends AuditingFields {
 
     //    Item
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "itemId", nullable = false)
+    @JoinColumn(name = "item_id", nullable = false)
     private Item item;
     //    Location
     @ManyToOne
     @JoinColumn(name = "locationId", nullable = false)
     private Location location;
 
+    @OneToMany(mappedBy = "inventory", fetch = FetchType.LAZY)
+    private List<InventoryHistory> inventoryHistories;
 }

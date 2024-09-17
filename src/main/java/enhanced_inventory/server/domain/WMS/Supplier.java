@@ -30,6 +30,6 @@ public class Supplier {
     private String supplierType;
 
     //orphanRemoval: 부모 엔티티에서 자식 엔티티 제거될 떄, 자식 엔티티에서 데이터베이스가 삭제
-    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true) //부모 테이블
     private List<PurchaseOrder> purchaseOrders;
 }
