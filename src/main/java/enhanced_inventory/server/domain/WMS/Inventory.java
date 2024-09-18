@@ -4,6 +4,7 @@ import enhanced_inventory.server.domain.AuditingFields;
 import jakarta.persistence.*;
 import java.util.List;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -39,11 +40,11 @@ public class Inventory extends AuditingFields {
     //    Item
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "item_id", nullable = false)
-    private Item item;
+    @Setter private Item item;
     //    Location
     @ManyToOne
     @JoinColumn(name = "locationId", nullable = false)
-    private Location location;
+    @Setter private Location location;
 
     @OneToMany(mappedBy = "inventory", fetch = FetchType.LAZY)
     private List<InventoryHistory> inventoryHistories;
