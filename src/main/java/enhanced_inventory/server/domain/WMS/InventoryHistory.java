@@ -1,6 +1,7 @@
 package enhanced_inventory.server.domain.WMS;
 
 import enhanced_inventory.server.domain.AuditingFields;
+import enhanced_inventory.server.domain.enums.InventoryHistoryStatus;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -30,21 +31,16 @@ public class InventoryHistory extends AuditingFields {
 
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "inventory_id", nullable = false)
-  private Inventory inventory;
-  //modified로 알아볼 예정
+  @Setter  private Inventory inventory;
 
   @Setter
-  @Column(length = 1000)
-  private String exchangeReason;
-
-  @Setter
-  private int exchangeQuantity;
-
   @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-  @Setter
   @Column(nullable = false)
-  private LocalDateTime exchangeDate;
+  private LocalDateTime changeDate;
 
   @Setter
-  private int status;
+  private InventoryHistoryStatus changeType; // e.g., "ADD", "ADJUST", REMOVE
+
+  @Setter
+  private int changeQuantity;
 }
