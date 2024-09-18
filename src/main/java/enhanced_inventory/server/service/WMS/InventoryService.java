@@ -7,6 +7,8 @@ import enhanced_inventory.server.domain.WMS.Location;
 import enhanced_inventory.server.domain.enums.InventoryHistoryStatus;
 import enhanced_inventory.server.repository.WMS.InventoryHistoryRepository;
 import enhanced_inventory.server.repository.WMS.InventoryRepository;
+import enhanced_inventory.server.repository.WMS.ItemRepository;
+import enhanced_inventory.server.repository.WMS.LocationRepository;
 import jakarta.transaction.Transactional;
 import java.time.LocalDateTime;
 import org.springframework.data.domain.Page;
@@ -27,21 +29,33 @@ public class InventoryService {
 //  6. 재고 할당 및 예약: 출고 오더에 맞는 재고를 사전에 할당하거나 예약하는 기능
   private final InventoryRepository inventoryRepository;
   private final InventoryHistoryRepository inventoryHistoryRepository;
+  private final ItemRepository itemRepository;
+  private final LocationRepository locationRepository;
 
   public InventoryService(InventoryRepository inventoryRepository,
-      InventoryHistoryRepository inventoryHistoryRepository) {
+      InventoryHistoryRepository inventoryHistoryRepository,
+      ItemRepository itemRepository,
+      LocationRepository locationRepository) {
     this.inventoryRepository = inventoryRepository;
     this.inventoryHistoryRepository = inventoryHistoryRepository;
+    this.itemRepository = itemRepository;
+    this.locationRepository = locationRepository;
   }
 
   @Transactional
   public void addOrUpdateInventory(Long itemId, Long locationId, int quantity) {
     // 재고 추가 및 조정
+    // Retrieve existing Item and Location
+    Item item = itemRepository.findById(itemId)
+        .orElseThrow(() -> new RuntimeException("Item not found"));
+    Location location = locationRepository.findById(locationId)
+        .orElseThrow(() -> new RuntimeException("Location not found"));
+
     Inventory inventory = inventoryRepository.findByItemIdAndLocationId(itemId, locationId)
         .orElse(new Inventory());
 
-    inventory.setItem(new Item(itemId));
-    inventory.setLocation(new Location(locationId));
+    inventory.setItem(item);
+    inventory.setLocation(location);
     inventory.setQuantity(inventory.getQuantity() + quantity);
     inventory.setAvailableQuantity(inventory.getAvailableQuantity() + quantity);
 
@@ -71,7 +85,8 @@ public class InventoryService {
 
   @Transactional
   public void moveInventory(Long fromLocationId, Long toLocationId, Long itemId, int quantity) {
-    Inventory fromInventory = inventoryRepository.findByItemIdAndLocationId(itemId, fromLocationId) //아이템 정보와 locationId로 찾는다.
+    Inventory fromInventory = inventoryRepository.findByItemIdAndLocationId(itemId,
+            fromLocationId) //아이템 정보와 locationId로 찾는다.
         .orElseThrow(() -> new RuntimeException("Source location not found")); // trhow로
 
     if (fromInventory.getAvailableQuantity() < quantity) { // 가능한 quantitiy보다 움직이려는 quantitiy가 많으면
@@ -84,8 +99,13 @@ public class InventoryService {
         .orElse(new Inventory());
 
     //itemId,location Id 핸들링
-    toInventory.setItem(new Item(itemId));
-    toInventory.setLocation(new Location(toLocationId));
+    Item item = itemRepository.findById(itemId)
+        .orElseThrow(() -> new RuntimeException("Item not found"));
+    Location toLocation = locationRepository.findById(toLocationId)
+        .orElseThrow(() -> new RuntimeException("Location not found"));
+
+    toInventory.setItem(item);
+    toInventory.setLocation(toLocation);
     setInventoryQuantity((-quantity), toInventory);
     toInventory.setQuantity(toInventory.getQuantity() + quantity);
     toInventory.setAvailableQuantity(toInventory.getAvailableQuantity() + quantity);
